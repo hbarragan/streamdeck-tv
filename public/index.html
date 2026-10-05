@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090b10"><meta name="description" content="Explora tus plataformas en España y encuentra tu próxima película o serie en Plex.">
+  <title>StreamDeck · Tu noche, tu plataforma</title><link rel="icon" href="icon.svg"><link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header><button class="wordmark" id="home" aria-label="StreamDeck, volver a plataformas"><span class="brand-icon">▰</span> stream<span>deck</span><small>TV</small></button><nav id="navigation" aria-label="Navegación"></nav><div class="header-right"><span class="region"><span class="status-dot"></span> España</span><button id="settings" class="icon-button" aria-label="Conexión y ajustes">⚙</button><span id="clock"></span></div></header>
+  <main id="main" tabindex="-1"></main>
+  <footer><div class="remote-hint"><span>↑ ↓ ← →</span> Mover <span>OK</span> Elegir <span>↩</span> Volver</div><div class="credits"><a href="https://www.themoviedb.org" target="_blank" rel="noreferrer"><img src="tmdb.svg" alt="The Movie Database"></a><span>Disponibilidad: JustWatch · España</span></div></footer>
+  <dialog id="detail" aria-label="Ficha del título"></dialog>
+  <dialog id="preferences" aria-labelledby="settings-title"></dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>

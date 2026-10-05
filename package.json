@@ -1,0 +1,14 @@
+{
+  "name": "streamdeck-tv",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Catálogos de streaming para España y lanzador de Plex para Fire TV",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start": "node --env-file-if-exists=.env server/index.js",
+    "dev": "node --env-file-if-exists=.env --watch server/index.js",
+    "test": "node --test test/*.test.js",
+    "android:build": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-apk.ps1"
+  }
+}

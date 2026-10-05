@@ -1,0 +1,8 @@
+.env*
+.plex-*.json
+android/
+dist/
+.build-temp/
+test/
+scripts/
+*.log

@@ -1,0 +1,25 @@
+services:
+  streamdeck:
+    image: streamdeck-tv:1.2.0-arm64
+    platform: linux/arm64
+    container_name: streamdeck-tv
+    restart: unless-stopped
+    init: true
+    network_mode: bridge
+    read_only: true
+    user: "1000:1000"
+    ports:
+      - "${STREAMDECK_BIND_IP:-127.0.0.1}:3477:3477"
+    mem_limit: 256m
+    cpus: 0.5
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    tmpfs: ["/tmp:rw,noexec,nosuid,size=8m"]
+    volumes:
+      - streamdeck-private:/run/secrets:ro
+    logging:
+      driver: json-file
+      options: { max-size: "2m", max-file: "2" }
+volumes:
+  streamdeck-private:
+    external: true
