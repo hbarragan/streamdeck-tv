@@ -5,7 +5,7 @@ import { createCatalog, ApiError } from './catalog.js';
 import { createPlex } from './plex.js';
 import { createNetflixRanks } from './netflix.js';
 
-const publicDir = fileURLToPath(new URL('../public/', import.meta.url));
+const publicDir = () => fileURLToPath(new URL('../public/', import.meta.url));
 const assets = { '/': ['index.html', 'text/html'], '/index.html': ['index.html', 'text/html'], '/app.js': ['app.js', 'text/javascript'], '/style.css': ['style.css', 'text/css'], '/icon.svg': ['icon.svg', 'image/svg+xml'], '/tmdb.svg': ['tmdb.svg', 'image/svg+xml'] };
 export function createHandler(config = {}, fetcher = fetch) {
   const catalog = createCatalog(config.tmdbToken, fetcher);
@@ -53,7 +53,7 @@ export function createHandler(config = {}, fetcher = fetch) {
       if (!asset) throw new ApiError(404, 'Página no encontrada.');
       res.setHeader('Content-Security-Policy', "default-src 'self'; img-src 'self' https://image.tmdb.org; connect-src 'self' http: https:; style-src 'self'; script-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'");
       res.writeHead(200, { 'Content-Type': `${asset[1]}; charset=utf-8` });
-      res.end(await readFile(publicDir + asset[0]));
+      res.end(config.readAsset ? await config.readAsset(asset[0]) : await readFile(publicDir() + asset[0]));
     } catch (error) { json(error.status || 500, { error: error.status ? error.message : 'Ha ocurrido un error en el servidor.' }); }
   };
 }
