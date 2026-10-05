@@ -97,7 +97,7 @@ El script opcional `scripts/connect-plex.mjs` usa autorización PIN. Configura t
 La imagen solo incluye Node, servidor y archivos públicos. El volumen externo `streamdeck-private` contiene `streamdeck.env`, con permisos 0600 y propietario 1000. El contenedor lo monta en modo lectura, ejecuta como usuario node y arranca con `--env-file`. Tiene reinicio automático, healthcheck y límites de memoria/CPU.
 
 ```powershell
-docker build -t streamdeck-tv:1.2.0-arm64 .
+docker build --platform linux/arm64 -t streamdeck-tv:1.2.0-arm64 .
 docker volume create streamdeck-private
 Copy-Item .env.example C:\ruta\privada\streamdeck.env
 # Edita ese archivo y configura TMDB_TOKEN antes de continuar.
