@@ -1,7 +1,8 @@
 param([string]$SdkPath, [string]$GradlePath, [switch]$IncludeCredentials)
 $ErrorActionPreference = 'Stop'
 $projectDir = Split-Path -Parent $PSScriptRoot
-$libraryDir = Join-Path (Split-Path -Parent $projectDir) 'Librerias APK'
+$workspaceDir = Split-Path -Parent (Split-Path -Parent $projectDir)
+$libraryDir = Join-Path $workspaceDir 'recursos\Librerias APK'
 if (-not $SdkPath) { $SdkPath = if ($env:ANDROID_HOME) { $env:ANDROID_HOME } else { Join-Path $libraryDir 'android-sdk' } }
 if (-not (Test-Path -LiteralPath $SdkPath)) { throw 'No se encontró Android SDK. Indica -SdkPath o ANDROID_HOME.' }
 if (-not $GradlePath) {
